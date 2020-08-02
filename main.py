@@ -2,7 +2,11 @@ import random
 
 
 def gen_chk_code():
-    chk_code = str(random.randint(100000, 999999))
+    chk_code1 = random.randint(100000, 999999)
+    chk_code2 = random.randint(100000, 999999)
+    chk_code3 = random.randint(100000, 999999)
+    chk_code = int((chk_code1 + chk_code2 + chk_code3) / 3)
+    chk_code = str(chk_code)
     print(f"您的验证码：{chk_code}")
     return chk_code
 
@@ -70,5 +74,6 @@ for i in range(3):
         break
 else:
     print("失败3次，请稍后再试。")
+    exit(1)
 
 manage()
