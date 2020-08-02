@@ -34,21 +34,34 @@ def manage():
             lookfor()
         elif d == "watch":
             lookfor()
+        elif d == "count":
+            count()
         elif d == "quit":
             break
         elif d == "help":
-            print("add, watch, quit")
+            print("add 添加, watch 查看, count数量, quit退出")
         else:
             print("Command Not Found, Type 'help' to watch available commands.")
 
 
 def lookfor():
-    pass
+    with open("ProductsData.txt", encoding="utf-8") as products:
+        data = products.readlines()
+        for line in data:
+            print(line.strip())
 
+def count():
+    with open("ProductsData.txt", encoding="utf-8") as products:
+        data = products.readlines()
+        print(len(data))
 
 def add():
-    pass
-
+    num = input("商品编号：") + ","
+    name = input("商品名称：") + ","
+    tp = input("类别：") + ","
+    am = input("数量：")
+    with open("ProductsData.txt", encoding="utf-8", mode="a") as products:
+        products.write(num + name + tp + am + "\n")
 
 for i in range(3):
     if login():
