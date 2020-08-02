@@ -13,7 +13,7 @@ def login():
     input_passwd = input("输入密码：")
     input_chk = input("输入验证码：")
 
-    with open("UserPass.txt", encoding="utf-8") as userpass:
+    with open("data/UserPass.txt", encoding="utf-8") as userpass:
         data = userpass.readlines()
         username = data[0].strip()
         passwd = data[1].strip()
@@ -41,17 +41,17 @@ def manage():
         elif d == "help":
             print("add 添加, watch 查看, count数量, quit退出")
         else:
-            print("Command Not Found, Type 'help' to watch available commands.")
+            print(f"Command '{d}' Not Found, Type 'help' to watch available commands.")
 
 
 def lookfor():
-    with open("ProductsData.txt", encoding="utf-8") as products:
+    with open("data/ProductsData.txt", encoding="utf-8") as products:
         data = products.readlines()
         for line in data:
             print(line.strip())
 
 def count():
-    with open("ProductsData.txt", encoding="utf-8") as products:
+    with open("data/ProductsData.txt", encoding="utf-8") as products:
         data = products.readlines()
         print(len(data))
 
@@ -59,9 +59,10 @@ def add():
     num = input("商品编号：") + ","
     name = input("商品名称：") + ","
     tp = input("类别：") + ","
+    code = input("商品条码：") + ","
     am = input("数量：")
-    with open("ProductsData.txt", encoding="utf-8", mode="a") as products:
-        products.write(num + name + tp + am + "\n")
+    with open("data/ProductsData.txt", encoding="utf-8", mode="a") as products:
+        products.write(num + name + tp + code + am + "\n")
 
 for i in range(3):
     if login():
